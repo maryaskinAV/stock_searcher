@@ -1,0 +1,22 @@
+---
+
+version: "3.4"
+services:
+  stocker_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: stocker_api
+    command: python main.py
+    volumes:
+      - .:/home/app/stocker_api
+    ports:
+      - 5000:5000
+    tty: true
+    restart: on-failure
+
+
+networks:
+  default:
+    external:
+      name: stocker-network
